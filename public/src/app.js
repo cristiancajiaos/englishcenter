@@ -14,6 +14,22 @@
                 name: 'main',
                 url: '/main',
                 component: 'mainComponent'
+            }, {
+                name: 'about',
+                url: '/about',
+                component: 'aboutComponent'
+            }, {
+                name: 'courses',
+                url: '/courses',
+                component: 'coursesComponent'
+            }, {
+                name: 'location',
+                url: '/location',
+                component: 'locationComponent'
+            }, {
+                name: 'contact',
+                url: '/contact',
+                component: 'contactComponent'
             }];
 
             states.forEach(function(state){

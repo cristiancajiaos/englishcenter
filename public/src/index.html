@@ -9,7 +9,33 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hola, mundo!</h1>
+        <ul>
+            <li>
+                <a ui-sref="main" ui-sref-active="active">
+                    Main
+                </a>
+            </li>
+            <li>
+                <a ui-sref="about" ui-sref-active="active">
+                    About
+                </a>
+            </li>
+            <li>
+                <a ui-sref="courses" ui-sref-active="active">
+                    Courses
+                </a>
+            </li>
+            <li>
+                <a ui-sref="location" ui-sref-active="active">
+                    Location
+                </a>
+            </li>
+            <li>
+                <a ui-sref="contact" ui-sref-active="active">
+                    Contact
+                </a>
+            </li>
+        </ul>
 
         <main>
             <ui-view></ui-view>
