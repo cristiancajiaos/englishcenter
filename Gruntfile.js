@@ -20,6 +20,9 @@ module.exports = function(grunt) {
         all: ['public/src/css/***.css']
       }
     },
+    jshint: {
+      all: ['Gruntfile.js', 'public/src/**/*.js']
+    },
     htmlmin: {
       options: {
         compress: true,
@@ -64,6 +67,24 @@ module.exports = function(grunt) {
         dest: 'public/src/css/main.css'
       }
     },
+    uglify: {
+      options: {
+        compress: true,
+        removeComments: false
+      },
+      libs: {
+        src: [
+
+        ],
+        dest: 'public/dist/js/libs.js'
+      },
+      dist: {
+        src: [
+          'public/src/app.js'
+        ],
+        dest: 'public/dist/app.js'
+      }
+    },
     express: {
         all: {
             options: {
@@ -94,6 +115,10 @@ module.exports = function(grunt) {
         sass: {
           files: ['public/src/sass/**/*.scss'],
           tasks: ['stylelint:sass', 'sass', 'stylelint:css', 'cssmin:dist']
+        },
+        js: {
+          files: ['public/src/**/*.js'],
+          tasks: ['jshint', 'uglify:dist']
         }
     }
   });
@@ -101,10 +126,12 @@ module.exports = function(grunt) {
   grunt.registerTask("serve", [
     "htmlhint",
     "stylelint:sass",
+    'jshint',
     'htmlmin',
     'sass:dist',
     'stylelint:css',
     'cssmin',
+    'uglify',
     "express",
     "open",
     "watch"
