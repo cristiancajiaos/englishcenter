@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     ngtemplates: {
       dist: {
         cwd: 'public/src/app',
-        src: ['views/**/*.html'],
+        src: ['views/**/*.html', 'layout/**/*.html'],
         dest: 'public/src/app.templates.js',
         options: {
           module: 'app',

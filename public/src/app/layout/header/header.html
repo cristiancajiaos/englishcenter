@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<h1>{{vm.title}}</h1>
+
+<ul>
+    <li ng-repeat="element in vm.menu">
+        <a ui-sref="{{element.uiSref}}" ui-sref-active="vm.uiSrefActive">
+            {{element.name}}
+        </a>
+    </li>
+</ul>
