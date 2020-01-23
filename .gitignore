@@ -1,2 +1,5 @@
 node_modules
 public/dist
+public/src/js
+public/src/css
+public/src/app.templates.js

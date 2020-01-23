@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="es">
+<html ng-app="app" lang="es">
+
 <head>
     <title>English Center</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="css/libs.css" />
+    <link rel="stylesheet" href="css/main.min.css" />
 </head>
+
 <body>
-    <h1>Hola, mundo!</h1>
+    <header class="container-fluid">
+        <header-component>
+        </header-component>
+    </header>
+
+    <main class="container">
+        <ui-view></ui-view>
+    </main>
+
+    <footer class="container-fluid">
+        <footer-component>
+        </footer-component>
+    </footer>
+
+    <script src="js/libs.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
