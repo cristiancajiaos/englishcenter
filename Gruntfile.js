@@ -1,3 +1,4 @@
+var nodeSass = require('node-sass');
 var loadGruntTasks = require('load-grunt-tasks');
 
 module.exports = function(grunt) {
@@ -7,6 +8,17 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON("package.json"),
     htmlhint: {
       all: ["public/src/**/*.html"]
+    },
+    stylelint: {
+      options: {
+        configFile: 'etc/.stylelintrc'
+      },
+      sass: {
+        all: ['public/src/sass/**/.scss']
+      },
+      css: {
+        all: ['public/src/css/***.css']
+      }
     },
     htmlmin: {
       options: {
@@ -22,6 +34,34 @@ module.exports = function(grunt) {
       dist: {
         src: "public/src/index.html",
         dest: "public/dist/index.html"
+      }
+    },
+    cssmin: {
+      options: {
+        compress: true,
+        removeComments: false
+      },
+      libs: {
+        src: [
+
+        ],
+        dest: 'public/dist/css/libs.css'
+      },
+      dist: {
+        src: [
+          'public/src/css/main.css'
+        ],
+        dest: 'public/dist/css/main.min.css'
+      }
+    },
+    sass: {
+      options: {
+        implementation: nodeSass,
+        sourceMap: true
+      },
+      dist: {
+        src: 'public/src/sass/main.scss',
+        dest: 'public/src/css/main.css'
       }
     },
     express: {
@@ -50,13 +90,21 @@ module.exports = function(grunt) {
         html: {
             files: ['public/src/**/*.html'],
             tasks: ['htmlhint', 'htmlmin']
+        },
+        sass: {
+          files: ['public/src/sass/**/*.scss'],
+          tasks: ['stylelint:sass', 'sass', 'stylelint:css', 'cssmin:dist']
         }
     }
   });
 
   grunt.registerTask("serve", [
     "htmlhint",
-    "htmlmin",
+    "stylelint:sass",
+    'htmlmin',
+    'sass:dist',
+    'stylelint:css',
+    'cssmin',
     "express",
     "open",
     "watch"
