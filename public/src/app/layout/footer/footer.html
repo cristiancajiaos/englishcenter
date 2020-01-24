@@ -1,2 +1,14 @@
 <!DOCTYPE html>
-<h1>{{vm.title}}</h1>
+<footer>
+    <div class="container-fluid">
+        <h4 class="mb-4">"{{vm.motto}}"</h4>
+        <p ng-repeat="contact in vm.contacts">
+            <span class="fa-stack">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas {{contact.icon}} fa-fw fa-stack-1x"></i> 
+            </span>
+            <span>{{contact.type}}: {{contact.content}}</span>
+        </p>
+    </div>
+</footer>
+
