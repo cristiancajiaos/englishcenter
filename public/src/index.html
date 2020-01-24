@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="app" lang="es">
-
 <head>
     <title>English Center</title>
     <meta charset="UTF-8" />
@@ -10,22 +9,16 @@
 </head>
 
 <body>
-    <header class="container-fluid">
-        <header-component>
-        </header-component>
-    </header>
+    <header-component>
+    </header-component>
 
-    <main class="container">
-        <ui-view></ui-view>
+    <main class="container" ui-view>
     </main>
 
-    <footer class="container-fluid">
-        <footer-component>
-        </footer-component>
-    </footer>
+    <footer-component>
+    </footer-component>
 
     <script src="js/libs.js"></script>
     <script src="app.js"></script>
 </body>
-
 </html>

@@ -1,29 +1,14 @@
 (function () {
     angular.module('app').controller('headerCtrl', headerCtrl);
 
-    headerCtrl.$inject = ['$scope'];
+    headerCtrl.$inject = ['$scope', 'basicData'];
 
-    function headerCtrl($scope) {
+    function headerCtrl($scope, basicData) {
         var vm = this;
         vm.title = 'Header';
 
         vm.uiSrefActive = 'active';
 
-        vm.menu = [{
-            name: 'Main',
-            uiSref: 'main'
-        }, {
-            name: 'About',
-            uiSref: 'about'
-        }, {
-            name: 'Courses',
-            uiSref: 'courses'
-        }, {
-            name: 'Location',
-            uiSref: 'location'
-        }, {
-            name: 'Contact',
-            uiSref: 'contact'
-        }];
+        vm.menu = basicData.menuOptions;
     }
 })();

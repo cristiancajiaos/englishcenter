@@ -1,5 +1,9 @@
 body {
     font-family: $default-font;
+
+    & > *:not(:first-child) {
+        margin-bottom: 1rem;
+    }
 }
 
 .active {

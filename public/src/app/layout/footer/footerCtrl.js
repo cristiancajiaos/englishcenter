@@ -1,10 +1,11 @@
 (function(){
     angular.module('app').controller('footerCtrl', footerCtrl);
 
-    footerCtrl.$inject = ['$scope'];
+    footerCtrl.$inject = ['$scope', 'basicData'];
 
-    function footerCtrl($scope){
+    function footerCtrl($scope, basicData){
         var vm = this;
-        vm.title = 'Footer';
+        vm.motto = basicData.motto;
+        vm.contacts = basicData.contactOptions;
     }
 })();
