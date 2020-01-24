@@ -2,7 +2,7 @@ var lodderTimeGrunt = require('@lodder/time-grunt');
 var nodeSass = require('node-sass');
 var loadGruntTasks = require('load-grunt-tasks');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   lodderTimeGrunt(grunt);
   loadGruntTasks(grunt);
 
@@ -27,6 +27,22 @@ module.exports = function(grunt) {
     },
     jshint: {
       all: ['Gruntfile.js', 'public/src/**/*.js']
+    },
+    copy: {
+      dist: {
+        expand: true,
+        flatten: true,
+        filter: 'isFile',
+        src: 'public/src/data/**',
+        dest: 'public/dist/data'
+      },
+      release: {
+        expand: true,
+        flatten: true,
+        filter: 'isFile',
+        src: 'public/src/data/**',
+        dest: 'public/release/data'
+      }
     },
     htmlmin: {
       options: {
@@ -125,50 +141,50 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'public/src/img',
           src: ['**/*.{png,jpg,gif}'],
-          dest:'public/dist/img'
+          dest: 'public/dist/img'
         }]
       }
     },
     express: {
-        all: {
-            options: {
-                port: 9001,
-                hostname: '0.0.0.0',
-                bases: ['public/dist'],
-                livereload: true
-            }
+      all: {
+        options: {
+          port: 9001,
+          hostname: '0.0.0.0',
+          bases: ['public/dist'],
+          livereload: true
         }
+      }
     },
     open: {
-        all: {
-            path: 'http://localhost:<%= express.all.options.port %>'
-        }
+      all: {
+        path: 'http://localhost:<%= express.all.options.port %>'
+      }
     },
     watch: {
-        options: {
-            livereload: true
-        },
-        gruntfile: {
-            files: ['Gruntfile.js'],
-            tasks: ['htmlhint', 'htmlmin']
-        },
-        html: {
-            files: ['public/src/**/*.html'],
-            tasks: ['htmlhint', 'htmlmin', 'ngtemplates', 'jshint', 'uglify:dist']
-        },
-        sass: {
-          files: ['public/src/sass/**/*.scss'],
-          tasks: ['stylelint:sass', 'sass', 'stylelint:css', 'cssmin:dist']
-        },
-        js: {
-          files: ['public/src/**/*.js'],
-          tasks: ['jshint', 'uglify:dist']
-        }
+      options: {
+        livereload: true
+      },
+      gruntfile: {
+        files: ['Gruntfile.js'],
+        tasks: ['htmlhint', 'htmlmin']
+      },
+      html: {
+        files: ['public/src/**/*.html'],
+        tasks: ['htmlhint', 'htmlmin', 'ngtemplates', 'jshint', 'uglify:dist']
+      },
+      sass: {
+        files: ['public/src/sass/**/*.scss'],
+        tasks: ['stylelint:sass', 'sass', 'stylelint:css', 'cssmin:dist']
+      },
+      js: {
+        files: ['public/src/**/*.js'],
+        tasks: ['jshint', 'uglify:dist']
+      }
     }
   });
 
   grunt.registerTask("serve", [
-    "clean",
+    'clean',
     "htmlhint",
     "stylelint:sass",
     'jshint',
@@ -178,13 +194,15 @@ module.exports = function(grunt) {
     'stylelint:css',
     'cssmin',
     'uglify',
+    'copy:dist',
     "express",
     "open",
     "watch"
   ]);
 
   grunt.registerTask("servewithimg", [
-    "clean",
+    'clean',
+    
     "htmlhint",
     "stylelint:sass",
     'jshint',
@@ -194,6 +212,7 @@ module.exports = function(grunt) {
     'stylelint:css',
     'cssmin',
     'uglify',
+    'copy:dist',
     'imagemin',
     "express",
     "open",
