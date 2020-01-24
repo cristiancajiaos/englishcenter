@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<h1>{{vm.title}}</h1>
+<header>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/100x50" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar"
+                aria-controls="headerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars fa-fw"></i>
+            </button>
 
-<ul>
-    <li ng-repeat="element in vm.menu">
-        <a ui-sref="{{element.uiSref}}" ui-sref-active="vm.uiSrefActive">
-            {{element.name}}
-        </a>
-    </li>
-</ul>
+            <div class="collapse navbar-collapse" id="headerNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li ng-repeat="element in vm.menu" class="nav-item">
+                        <a ui-sref="{{element.uiSref}}" ui-sref-active="active" class="nav-link">
+                            {{element.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
